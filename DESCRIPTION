@@ -1,0 +1,14 @@
+Package: qifunctions
+Type: Package
+Title: Quality Indicator functions
+Version: 0.1.0
+Author: Jaime Villacampa <jaime.villacampa@phs.scot>
+Maintainer: PHS Quality Indicators team <phs.qualityindicators@phs.scot>
+Description: Useful functions used in the Quality Indicators team
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.2
+Imports: 
+    dplyr (>= 0.8.0), 
+    rstudioapi
