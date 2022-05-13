@@ -1,17 +1,18 @@
 #
 #' @title SMR01 completeness
 #'
-#' @description \code{create_ir} creates Informatio then Request folders and code template required and opens a new project for the IR.
+#' @description \code{create_ir} creates Informatio then Request folders and
+#' code template required and opens a new project for the IR.
 #'
 #' @details Everything is created in cl-out
-#'
-#'
 #'
 #' @param ir_number A \code{character} string specifying the name of the IR,
 #' including the year, e.g. IR2022-5555.
 #'
 #' @return Creates a series of directories in cl-out, a script that can be used
 #' as a template for the IR and opens the project
+#'
+#' @example create_ir("IR2022-55555")
 #'
 #' @importFrom magrittr %>%
 #' @importFrom magrittr %<>%
@@ -32,6 +33,12 @@ create_ir <- function(ir_number) {
 
   cl_out <- paste0(platform, "linkage/output/") # cl-out
   ir_folder <- paste0(cl_out, ir_year, "/", ir_number) # folder for IR
+
+  # Function fails in directory already exists.
+  if (dir.exists(ir_folder)) {
+    stop(paste0("Folder ", ir_folder, " already exists."))
+  }
+
 
   # Creating folder and subfolders
   dir.create(ir_folder)
@@ -86,11 +93,8 @@ create_ir <- function(ir_number) {
     print("Script for this IR already exists")
   }
 
-  # Creating R project
-  rstudioapi::openProject(ir_folder)
-
-  # This could be expanded to then create excel file and include standard notes and all that
-  # also including git connections, qdapTools::repo2github() or usethis or devtools could do
+  # Creating R project and opens in new window
+  rstudioapi::openProject(ir_folder, newSession = TRUE)
 
 }
 

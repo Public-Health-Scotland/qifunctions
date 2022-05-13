@@ -2,6 +2,7 @@
 cookie-control.js
 *deploy*.R
 create_credentials.R
+todo.R
 #Not needed
 rsconnect
 .Rproj.user
