@@ -24,6 +24,8 @@ create_ir <- function(ir_number) {
 
   ir_year <- sub("-.*", "", ir_number)
 
+  Sys.umask("002") # to set permissions right
+
 
   # Filepath changes depending on Desktop/Server
   platform <- dplyr::case_when(sessionInfo()$platform %in% c("x86_64-redhat-linux-gnu (64-bit)",
@@ -41,10 +43,10 @@ create_ir <- function(ir_number) {
 
 
   # Creating folder and subfolders
-  dir.create(ir_folder)
-  dir.create(paste0(ir_folder, "/data"))
-  dir.create(paste0(ir_folder, "/emails"))
-  dir.create(paste0(ir_folder, "/code"))
+  dir.create(ir_folder, showWarnings = TRUE, recursive = TRUE, mode = "770")
+  dir.create(paste0(ir_folder, "/data"), showWarnings = TRUE, recursive = TRUE, mode = "770")
+  dir.create(paste0(ir_folder, "/emails"), showWarnings = TRUE, recursive = TRUE, mode = "770")
+  dir.create(paste0(ir_folder, "/code"), showWarnings = TRUE, recursive = TRUE, mode = "770")
 
   # Creating script for code
   ir_script <- paste0(ir_folder, "/code/", ir_number , ".R")
