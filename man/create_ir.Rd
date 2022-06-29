@@ -12,10 +12,12 @@ including the year, e.g. IR2022-5555.}
 }
 \value{
 Creates a series of directories in cl-out, a script that can be used
-as a template for the IR and opens the project
+as a template for the IR, an Excel file for the final output, and opens the project
+in a new window
 }
 \description{
-\code{create_ir} creates Informatio then Request folders and code template required and opens a new project for the IR.
+\code{create_ir} Creates folder, code and output template for an
+information request folders and opens a new project for the IR.
 }
 \details{
 Everything is created in cl-out
