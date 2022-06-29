@@ -26,6 +26,10 @@ create_ir <- function(ir_number) {
 
   Sys.umask("002") # to set permissions right
 
+  ###############################################.
+  ## Creating directories ----
+  ###############################################.
+
 
   # Filepath changes depending on Desktop/Server
   platform <- dplyr::case_when(sessionInfo()$platform %in% c("x86_64-redhat-linux-gnu (64-bit)",
@@ -47,6 +51,11 @@ create_ir <- function(ir_number) {
   dir.create(paste0(ir_folder, "/data"), showWarnings = TRUE, recursive = TRUE, mode = "770")
   dir.create(paste0(ir_folder, "/emails"), showWarnings = TRUE, recursive = TRUE, mode = "770")
   dir.create(paste0(ir_folder, "/code"), showWarnings = TRUE, recursive = TRUE, mode = "770")
+  dir.create(paste0(ir_folder, "/.Rproj.user"), showWarnings = TRUE, recursive = TRUE, mode = "770")
+
+  ###############################################.
+  ## Creating template IR script ----
+  ###############################################.
 
   # Creating script for code
   ir_script <- paste0(ir_folder, "/code/", ir_number , ".R")
@@ -94,6 +103,24 @@ create_ir <- function(ir_number) {
   } else {
     print("Script for this IR already exists")
   }
+
+  ###############################################.
+  ## Bringing IR template ----
+  ###############################################.
+
+  irtemplate <- openxlsx::loadWorkbook(system.file("extdata", "ir-template.xlsx",
+                                                   package = "qifunctions"))
+
+  # Writing reference number in function
+  openxlsx::writeData(irtemplate, "Notes", paste("Ref:", ir_number),
+                      startCol = 2, startRow = 3)
+
+  # Writing month of extract based on current date
+  openxlsx::writeData(irtemplate, "Notes",
+                      paste("Date extracted: ", format(Sys.Date(), "%B %Y")),
+                      startCol = 2, startRow = 4)
+
+  openxlsx::saveWorkbook(irtemplate, paste0(ir_folder, "/", ir_number , ".xlsx"))
 
   # Creating R project and opens in new window
   rstudioapi::openProject(ir_folder, newSession = TRUE)

@@ -11,4 +11,5 @@ LazyData: true
 RoxygenNote: 7.1.2
 Imports: 
     dplyr (>= 0.8.0), 
+    openxlsx,
     rstudioapi
