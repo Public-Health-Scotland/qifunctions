@@ -2,23 +2,33 @@
 % Please edit documentation in R/create_ir.R
 \name{create_ir}
 \alias{create_ir}
-\title{SMR01 completeness}
+\title{Create IR folder and templates}
 \usage{
-create_ir(ir_number)
+create_ir(ir_number, title = NULL, source = NULL)
 }
 \arguments{
 \item{ir_number}{A \code{character} string specifying the name of the IR,
 including the year, e.g. IR2022-5555.}
+
+\item{title}{An optional \code{character} string specifying the title of the IR.}
+
+\item{source}{An optional \code{character} string specifying the source of the data.}
 }
 \value{
 Creates a series of directories in cl-out, a script that can be used
 as a template for the IR, an Excel file for the final output, and opens the project
-in a new window
+in a new window.
 }
 \description{
 \code{create_ir} Creates folder, code and output template for an
 information request folders and opens a new project for the IR.
 }
 \details{
-Everything is created in cl-out
+Everything is created in cl-out.
+}
+\examples{
+create_ir("IR2022-55555")
+
+create_ir("IR2022-55555", title = "Number of admissions", source = "SMR01")
+
 }
