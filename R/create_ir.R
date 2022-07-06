@@ -148,7 +148,7 @@ create_ir <- function(ir_number, title = NULL, source = NULL) {
 
   # Creating R project and opens in new window
   rstudioapi::openProject(ir_folder, newSession = TRUE)
-
+  system(paste0("chmod -R 775 ", ir_folder))
 }
 
 
