@@ -2,7 +2,7 @@
 #' @title Create IR folder and templates
 #'
 #' @description \code{create_ir} Creates folder, code and output template for an
-#' information request folders and opens a new project for the IR.
+#' information request.
 #'
 #' @details Everything is created in cl-out.
 #'
@@ -14,8 +14,7 @@
 #' @param source An optional \code{character} string specifying the source of the data.
 #'
 #' @return Creates a series of directories in cl-out, a script that can be used
-#' as a template for the IR, an Excel file for the final output, and opens the project
-#' in a new window.
+#' as a template for the IR, and an Excel file for the final output
 #'
 #' @examples create_ir("IR2022-55555")
 #'
@@ -58,7 +57,7 @@ create_ir <- function(ir_number, title = NULL, source = NULL) {
   dir.create(paste0(ir_folder, "/data"), showWarnings = TRUE, recursive = TRUE, mode = "770")
   dir.create(paste0(ir_folder, "/emails"), showWarnings = TRUE, recursive = TRUE, mode = "770")
   dir.create(paste0(ir_folder, "/code"), showWarnings = TRUE, recursive = TRUE, mode = "770")
-  dir.create(paste0(ir_folder, "/.Rproj.user"), showWarnings = TRUE, recursive = TRUE, mode = "770")
+  # dir.create(paste0(ir_folder, "/.Rproj.user"), showWarnings = TRUE, recursive = TRUE, mode = "770")
 
   ###############################################.
   ## Creating template IR script ----
@@ -147,8 +146,8 @@ create_ir <- function(ir_number, title = NULL, source = NULL) {
   ###############################################.
 
   # Creating R project and opens in new window
-  rstudioapi::openProject(ir_folder, newSession = TRUE)
-  system(paste0("chmod -R 775 ", ir_folder))
+  # rstudioapi::openProject(ir_folder, newSession = TRUE)
+  # system(paste0("chmod -R 775 ", ir_folder))
 }
 
 
